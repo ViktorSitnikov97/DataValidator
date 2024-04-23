@@ -3,14 +3,14 @@ package hexlet.code.schemas;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class MapSchema extends BaseSchema<Map<String, String>> {
+public final class MapSchema<K, V> extends BaseSchema<Map<K, V>> {
 
-    public final MapSchema required() {
-        Predicate<Map<String, String>> req =  map -> {
+    public MapSchema<K, V> required() {
+        Predicate<Map<K, V>> req =  map -> {
             if (map == null) {
                 return false;
             }
-            for (String value : map.values()) {
+            for (V value : map.values()) {
                 if (value == null) {
                     return false;
                 }
@@ -21,9 +21,21 @@ public class MapSchema extends BaseSchema<Map<String, String>> {
         return this;
     }
 
-    public final MapSchema sizeof(int num) {
-        Predicate<Map<String, String>> siz = map -> map.size() == num;
+    public MapSchema<K, V> sizeof(int size) {
+        Predicate<Map<K, V>> siz = map -> map == null || map.size() == size;
         addCheck("sizeof", siz);
+        return this;
+    }
+
+    public MapSchema<K, V> shape(Map<K, BaseSchema<V>> mapWithSettings) {
+        Predicate<Map<K, V>> sh = map -> mapWithSettings.entrySet().stream()
+                .allMatch(
+                        entry -> {
+                            BaseSchema<V> schema =  mapWithSettings.get(entry.getKey());
+                            V currentValue = map.get(entry.getKey());
+                            return schema.isValid(currentValue);
+                        });
+        addCheck("shape", sh);
         return this;
     }
 }
