@@ -17,43 +17,33 @@ public class StringSchemaTest {
     @Test
     public void isValidTest1() {
 
-        String emptyString = "";
-        String nullString = null;
-        boolean expected1 = true;
-        boolean expected2 = false;
-
-        Assertions.assertEquals(schema.isValid(emptyString), expected1);
-        Assertions.assertEquals(schema.isValid(nullString), expected1);
+        Assertions.assertTrue(schema.isValid(""));
+        Assertions.assertTrue(schema.isValid(null));
 
         schema.required();
 
-        Assertions.assertEquals(schema.isValid(emptyString), expected2);
-        Assertions.assertEquals(schema.isValid(nullString), expected2);
+        Assertions.assertFalse(schema.isValid(""));
+        Assertions.assertFalse(schema.isValid(null));
     }
 
     @Test
     public void isValidTest2() {
 
-        boolean expected1 = true;
-        boolean expected2 = false;
-
         schema.required();
 
-        Assertions.assertEquals(schema.isValid("what does the fox say"), expected1);
-        Assertions.assertEquals(schema.isValid("Hexlet"), expected1);
-        Assertions.assertEquals(schema.contains("wh").isValid("what does the fox say"), expected1);
-        Assertions.assertEquals(schema.contains("what").isValid("what does the fox say"), expected1);
-        Assertions.assertEquals(schema.contains("whatthe").isValid("what does the fox say"), expected2);
+        Assertions.assertTrue(schema.isValid("what does the fox say"));
+        Assertions.assertTrue(schema.isValid("Hexlet"));
+        Assertions.assertTrue(schema.contains("wh").isValid("what does the fox say"));
+        Assertions.assertTrue(schema.contains("what").isValid("what does the fox say"));
+        Assertions.assertFalse(schema.contains("whatthe").isValid("what does the fox say"));
 
-        Assertions.assertEquals(schema.isValid("what does the fox say"), expected2);
-
+        Assertions.assertFalse(schema.isValid("what does the fox say"));
     }
 
     @Test
     public void isValidTest3() {
-        boolean expected1 = true;
-        Assertions.assertEquals(schema.minLength(10).minLength(4).isValid("Hexlet"), expected1);
-        Assertions.assertEquals(schema.contains("help").contains("Hex").isValid("Hexlet"), expected1);
-    }
 
+        Assertions.assertTrue(schema.minLength(10).minLength(4).isValid("Hexlet"));
+        Assertions.assertTrue(schema.contains("help").contains("Hex").isValid("Hexlet"));
+    }
 }

@@ -18,25 +18,18 @@ public class NumberSchemaTest {
     @Test
     void isValidTest1() {
 
-        boolean expected1 = true;
-        boolean expected2 = false;
-
-        boolean actual1 =  schema.isValid(null);
-        Assertions.assertEquals(actual1, expected1);
+        Assertions.assertEquals(schema.isValid(null), true);
 
         schema.required();
 
-        boolean actual2 = schema.isValid(null);
-        Assertions.assertEquals(actual2, expected2);
+        Assertions.assertEquals(schema.isValid(null), false);
 
     }
 
     @Test
     void isValidTest2() {
 
-        boolean actual1 =  schema.positive().isValid(null);
-
-        Assertions.assertEquals(actual1, true);
+        Assertions.assertEquals(schema.positive().isValid(null), true);
         Assertions.assertTrue(schema.isValid(10));
 
         schema.required();
@@ -50,6 +43,5 @@ public class NumberSchemaTest {
         Assertions.assertFalse(schema.range(10, 20).isValid(21));
         Assertions.assertTrue(schema.range(5, 10).
                 range(2, 4).isValid(3));
-
     }
 }
