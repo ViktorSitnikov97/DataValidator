@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class NumberSchemaTest {
+public final class NumberSchemaTest {
 
-    static NumberSchema schema;
+    private static NumberSchema schema;
 
     @BeforeEach
     void beforeEach() {

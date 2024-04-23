@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MapSchemaTest {
+public final class MapSchemaTest {
 
-    static Validator validator;
-    static MapSchema schema;
+    private static Validator validator;
+    private static MapSchema schema;
 
 
     @BeforeEach
-    void beforeEach() {
+    public void beforeEach() {
         validator = new Validator();
         schema = validator.map();
     }
