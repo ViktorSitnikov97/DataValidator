@@ -17,5 +17,4 @@ public class ValidatorTest {
         Assertions.assertInstanceOf(NumberSchema.class, validator.number());
         Assertions.assertInstanceOf(MapSchema.class, validator.map());
     }
-
 }
