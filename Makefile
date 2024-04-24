@@ -30,4 +30,3 @@ lint:
 check-deps:
 	make -C app check-deps
 
-.PHONY: build
