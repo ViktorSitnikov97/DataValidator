@@ -24,7 +24,7 @@
 
 Склонируйте репозиторий локально:
 ```
-git clone git@github.com:ViktorSitnikov97/java-project-78.git
+git clone git@github.com:ViktorSitnikov97/DataValidator.git
 make install
 ```
 Создайте JAR-файл командой  `./gradlew jar`. Путь, по которому будет лежать файл: `"./build/libs"`. Скопируйте этот файл в свой проект в специально созданную директорию `libs` в корне проекта.
