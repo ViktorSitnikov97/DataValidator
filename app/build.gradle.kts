@@ -2,7 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
-    //application
+    id("org.sonarqube") version "6.2.0.5505"
     java
     jacoco
     id("checkstyle")
@@ -15,6 +15,15 @@ group = "hexlet.code"
 version = "1.0-SNAPSHOT"
 
 //application { mainClass.set("hexlet.code.App") }
+
+sonar {
+    properties {
+        property("sonar.projectName", "DifferenceCalculator")
+        property("sonar.projectKey", "ViktorSitnikov97_DifferenceCalculator")
+        property("sonar.organization", "viktorsitnikov97")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
+}
 
 repositories {
     mavenCentral()
