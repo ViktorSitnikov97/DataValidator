@@ -18,8 +18,8 @@ version = "1.0-SNAPSHOT"
 
 sonar {
     properties {
-        property("sonar.projectName", "DifferenceCalculator")
-        property("sonar.projectKey", "ViktorSitnikov97_DifferenceCalculator")
+        property("sonar.projectName", "DataValidator")
+        property("sonar.projectKey", "ViktorSitnikov97_DataValidator")
         property("sonar.organization", "viktorsitnikov97")
         property("sonar.host.url", "https://sonarcloud.io")
     }
